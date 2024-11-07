@@ -1,0 +1,394 @@
+/* General setup */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(back.jpg);
+    overflow: hidden;
+    background-size: cover;
+}
+
+/* Container with 3D perspective */
+.container {
+    width: 430px;
+    height: 580px;
+    position: relative;
+    box-shadow: 0 0 20px rgb(17, 6, 42);
+    border-radius: 15px;
+    background: transparent;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1200px; /* Add depth for 3D animations */
+}
+
+.container h1 {
+    position: absolute;
+    font-size: 40px;
+    top: 40px;
+    text-align: center;
+    width: 100%;
+    color: rgb(8, 31, 124);
+    background: linear-gradient(45deg, #adfff0aa, #4becbf);
+-webkit-background-clip: text;
+    color: rgb(8, 31, 124);
+    text-shadow: 0 0 5px rgba(249, 150, 10, 0.927), 0 0 5px rgba(44, 240, 126, 0.989);
+}
+
+
+.container .indicator{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    top: 160px;
+    z-index: 10;
+    position: absolute;
+    
+}
+
+.indicator .step{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 5px;
+}
+
+.step div {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #62dcf1, #03aef2);
+  color:seashell;
+  transition: transform 0.4s, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.step div:hover {
+  transform: scale(1.2) rotate(360deg);
+  box-shadow: 0 0 15px rgba(255, 255, 0, 0.8), 0 0 30px rgba(255, 100, 0, 0.5);
+}
+
+.step1 div{
+    border-color:rgb(0, 209, 241) ;
+    background:rgb(8, 31, 124);
+    color: #FFF;
+    transition: all 0.4s ease;
+}
+
+.step span{
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.step1 span{
+    color:rgb(8, 31, 124);
+}
+
+.indicator .line{
+    width: 30px;
+    height: 30px;
+    border-top: 4px solid ;
+    transition: all 0.4s ease;
+}
+
+.container .panel{
+    width: 1720px;
+    height: 100%;
+    position: relative;
+    left: 0;
+    top: 0;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth animation */
+}
+
+.page1,.page2,.page3,.page4{
+    position: absolute;
+    height: 100%;
+    width: 430px;
+    backface-visibility: hidden; /* Ensure smooth transitions */
+    transform-style: preserve-3d;
+    animation: blowIn 0.8s ease-in-out forwards;
+    opacity: 0; /* Initially hidden */
+    color:black;
+}
+
+.page1{
+    left: 0;
+}
+
+.page2{
+    left: 25%;
+}
+
+.page3{
+    left: 50%;
+}
+
+.page4{
+    left: 75%;
+}
+
+.form{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    top: 90px;
+}
+
+.form .form-group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    width: 80%;
+    height: 50px;
+    margin: 15px 0;
+}
+
+.form-group input{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: 5px;
+    padding: 0 20px;
+    font-size: 17px;
+    font-weight: 500;
+    outline: none;
+    border: 1px solid #99999993;
+}
+
+.form-group label{
+    position: absolute;
+    pointer-events: none;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    background:#999 ;
+    transition: all 0.3s ease;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 3px;
+    color: #999;
+}
+
+.form-group input:focus ~ label,
+.form-group input:valid ~ label{
+    color: #999;
+    top: 0%;
+    transform: translateY(-50%) scale(0.85);
+}
+
+.form .btn-group{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 80%;
+    height: 50px;
+}
+
+.btn-group .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(8, 31, 124);
+    color: #d8cbcbd3;
+    text-transform: capitalize;
+    text-align: center;
+    width: 48%;
+    height: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 8px rgba(255, 160, 6, 0.949);
+    cursor: pointer;
+}
+
+.btn-group .btn-f{
+    width: 100%;
+}
+
+.btn-group .btn:active{
+    transform: scale(0.95);
+}
+
+.btn-group .btn:hover{
+    opacity: 0.8;
+}
+
+#one:checked ~ .container .panel{
+    left: -430px;
+}
+
+#two:checked ~ .container .panel{
+    left: -860px;
+}
+
+#three:checked ~ .container .panel{
+    left: -1290px;
+}
+
+#one,#two,#three{
+    display: none;
+}
+
+#one:checked ~ .container .indicator .line1,
+#two:checked ~ .container .indicator .line2,
+#three:checked ~ .container .indicator .line3{
+    border-color: rgb(8, 31, 124);
+}
+
+#one:checked ~ .container .indicator .step2 div,
+#two:checked ~ .container .indicator .step3 div,
+#three:checked ~ .container .indicator .step4 div{
+    border-color: rgb(8, 31, 124);
+    background: rgb(8, 31, 124);
+    color: #FFF;
+}
+
+#one:checked ~ .container .indicator .step2 span,
+#two:checked ~ .container .indicator .step3 span,
+#three:checked ~ .container .indicator .step4 span{
+    color: rgb(8, 31, 124);
+}
+@keyframes blowIn {
+  0% {
+      transform: scale(0.8) translateY(20px);
+      opacity: 0;
+  }
+  100% {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+  }
+}
+/* Sliding Panel with 3D Rotation */
+.panel {
+  width: 1720px;
+  height: 100%;
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.page1, .page2, .page3, .page4 {
+  width: 430px;
+  height: 100%;
+  flex-shrink: 0;
+  backface-visibility: hidden;
+}
+
+/* Buttons with Lightning Effects */
+.btn {
+  background: linear-gradient(45deg, #ff4c00, #ff8c00);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 17px;
+  font-weight: 500;
+  width: 48%;
+  height: 50px;
+  border-radius: 6px;
+  margin-top: 20px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(255, 255, 0, 0.5), 0 0 30px rgba(255, 100, 0, 0.3);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.5s ease-in-out;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 80%);
+  animation: blow 3s infinite linear;
+  transition: opacity 0.6s;
+}
+
+@keyframes blow {
+  0% {
+      transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+      transform: translate(50%, 50%) scale(1.5);
+  }
+  100% {
+      transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 255, 0, 0.8), 0 0 50px rgba(255, 100, 0, 0.5);
+}
+
+/* Input fields glowing effect */
+.form-group input {
+  border: 1px solid #555;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: #cfc8c8; /* Dark background for inputs */
+  color: #fff; /* Light text color */
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #fff;
+}
+
+.form-group input:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 8px rgba(255, 255, 0, 0.6), 0 0 15px rgba(255, 100, 0, 0.3);
+}
+
+/* Label styles */
+.form-group label {
+  position: absolute;
+  pointer-events: none;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  background: #cfc8c8; /* Dark background for labels */
+  transition: all 0.3s ease;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 3px;
+  color: #999; /* Light color for labels */
+}
+
+.form-group input:focus ~ label,
+.form-group input:valid ~ label {
+  color: #ff0000; /* Change label color on focus */
+  top: 0%;
+  transform: translateY(-50%) scale(0.85);
+}
+

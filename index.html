@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiteMap | Sliding SignUp Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <input type="checkbox" id="one">
+    <input type="checkbox" id="two">
+    <input type="checkbox" id="three">
+
+    <div class="container">
+        <h1>Sign Up</h1>
+
+        <div class="indicator">
+            <div class="step step1">
+                <div>1</div>
+                <span>Basic</span>
+            </div>
+            <div class="line line1"></div>
+            <div class="step step2">
+                <div>2</div>
+                <span>Contact</span>
+            </div>
+            <div class="line line2"></div>
+            <div class="step step3">
+                <div>3</div>
+                <span>Personal</span>
+            </div>
+            <div class="line line3"></div>
+            <div class="step step4">
+                <div>4</div>
+                <span>Login</span>
+            </div>
+        </div>
+
+        <div class="panel">
+            <!-- Basic Information -->
+            <div class="page1">
+                <form class="form">
+                    <h2>Basic Information</h2>
+                    <div class="form-group">
+                        <input type="text" required>
+                        <label>First Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" required>
+                        <label>Last Name</label>
+                    </div>
+                    <div class="btn-group">
+                        <label for="one" class="btn btn-f">Next</label>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="page2">
+                <form class="form">
+                    <h2>Contact Information</h2>
+                    <div class="form-group">
+                        <input type="email" required>
+                        <label>Email Address</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" required>
+                        <label>Phone Number</label>
+                    </div>
+                    <div class="btn-group">
+                        <label for="one" class="btn">Previous</label>
+                        <label for="two" class="btn">Next</label>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Personal Information -->
+            <div class="page3">
+                <form class="form">
+                    <h2>Personal Information</h2>
+                    <div class="form-group">
+                        <input type="number" required>
+                        <label>Aadhar ID</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" required>
+                        <label>Date of Birth</label>
+                    </div>
+                    <div class="btn-group">
+                        <label for="two" class="btn">Previous</label>
+                        <label for="three" class="btn">Next</label>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Login Details -->
+            <div class="page4">
+                <form class="form">
+                    <h2>Login Details</h2>
+                    <div class="form-group">
+                        <input type="text" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="btn-group">
+                        <label for="three" class="btn">Previous</label>
+                        <button type="submit" class="btn">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const pages = document.querySelectorAll(".panel > div");
+    const steps = document.querySelectorAll(".step");
+    let currentStep = 0;
+
+    // Update the current step visually
+    function updateStep(step) {
+        pages.forEach((page, index) => {
+            page.style.transform = `translateX(${(index - step) * 100}%) rotateY(${(index - step) * -15}deg)`;
+        });
+
+        steps.forEach((stepElement, index) => {
+            stepElement.classList.toggle("active", index <= step);
+        });
+    }
+
+    // Initial load position
+    updateStep(currentStep);
+
+    // "Next" button click event
+    document.querySelectorAll(".btn-f, .btn-group label[for='one'], .btn-group label[for='two'], .btn-group label[for='three']").forEach((btn, index) => {
+        btn.addEventListener("click", (e) => {
+            if (btn.classList.contains("btn-f") || btn.getAttribute("for") === "two" || btn.getAttribute("for") === "three") {
+                currentStep = Math.min(pages.length - 1, currentStep + 1);
+            } else {
+                currentStep = Math.max(0, currentStep - 1);
+            }
+            updateStep(currentStep);
+        });
+    });
+});
+</script>
+
+</body>
+</html>
